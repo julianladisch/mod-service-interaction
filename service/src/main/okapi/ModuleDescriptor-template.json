@@ -1,0 +1,166 @@
+{
+  "id": "${info.app.name}-${info.app.version}",
+  "name": "${info.app.name}",
+  "provides": [
+    {
+      "id": "servint",
+      "version": "${info.app.minorVersion}",
+      "handlers" : [
+        {
+          "methods": [ "GET" ],
+          "pathPattern": "/servint/settings*",
+          "permissionsRequired": [ "servint.settings.get" ]
+        },
+        {
+          "methods": [ "POST" ],
+          "pathPattern": "/servint/settings*",
+          "permissionsRequired": [ "servint.settings.post" ]
+        },
+        {
+          "methods": [ "PUT" ],
+          "pathPattern": "/servint/settings*",
+          "permissionsRequired": [ "servint.settings.put" ]
+        },
+        {
+          "methods": [ "DELETE" ],
+          "pathPattern": "/servint/settings*",
+          "permissionsRequired": [ "servint.settings.delete" ]
+        },
+        {
+          "methods": [ "GET" ],
+          "pathPattern": "/servint/refdata*",
+          "permissionsRequired": [ "servint.refdata.get" ]
+        },
+        {
+          "methods": [ "POST" ],
+          "pathPattern": "/servint/refdata*",
+          "permissionsRequired": [ "servint.refdata.post" ]
+        },
+        {
+          "methods": [ "PUT" ],
+          "pathPattern": "/servint/refdata*",
+          "permissionsRequired": [ "servint.refdata.put" ]
+        },
+        {
+          "methods": [ "DELETE" ],
+          "pathPattern": "/servint/refdata*",
+          "permissionsRequired": [ "servint.refdata.delete" ]
+        }
+      ]
+    },
+    {
+      "id": "_tenant",
+      "version": "1.2",
+      "interfaceType" : "system",
+      "handlers": [
+        {
+          "permissionsRequired" : [],
+          "methods": ["POST", "DELETE"],
+          "pathPattern": "/_/tenant"
+        }, {
+         "permissionsRequired" : [],
+         "methods" : [ "POST" ],
+         "pathPattern" : "/_/tenant/disable"
+        }
+
+      ]
+    }
+  ],
+  "permissionSets": [
+    {
+      "permissionName": "servint.settings.get",
+      "displayName": "settings get",
+      "description": "get settings",
+      "visible": false
+    }, 
+    {
+      "permissionName": "servint.settings.post",
+      "displayName": "settings post",
+      "description": "post settings",
+      "visible": false
+    }, 
+    {
+      "permissionName": "servint.settings.put",
+      "displayName": "settings put",
+      "description": "put settings",
+      "visible": false
+    }, {
+      "permissionName": "servint.settings.delete",
+      "displayName": "settings delete",
+      "description": "delete settings",
+      "visible": false
+    },
+    {
+      "permissionName": "servint.settings.read",
+      "displayName": "settings read",
+      "description": "read settings",
+      "visible": false,
+      "subPermissions": [
+          "servint.settings.get"
+      ]
+    },
+    {
+      "permissionName": "servint.settings.write",
+      "displayName": "settings write",
+      "description": "write settings",
+      "visible": false,
+      "subPermissions": [
+          "servint.settings.read",
+          "servint.settings.post",
+          "servint.settings.put",
+          "servint.settings.delete"
+      ]
+    },
+    {
+      "permissionName": "servint.refdata.get",
+      "displayName": "refdata get",
+      "description": "get refdata",
+      "visible": false
+    }, 
+    {
+      "permissionName": "servint.refdata.post",
+      "displayName": "refdata post",
+      "description": "post refdata",
+      "visible": false
+    }, 
+    {
+      "permissionName": "servint.refdata.put",
+      "displayName": "refdata put",
+      "description": "put refdata",
+      "visible": false
+    }, {
+      "permissionName": "servint.refdata.delete",
+      "displayName": "refdata delete",
+      "description": "delete refdata",
+      "visible": false
+    },
+    {
+      "permissionName": "servint.refdata.read",
+      "displayName": "refdata read",
+      "description": "read refdata",
+      "visible": false,
+      "subPermissions": [
+          "servint.refdata.get"
+      ]
+    },
+    {
+      "permissionName": "servint.refdata.write",
+      "displayName": "refdata write",
+      "description": "write refdata",
+      "visible": false,
+      "subPermissions": [
+          "servint.refdata.read",
+          "servint.refdata.post",
+          "servint.refdata.put",
+          "servint.refdata.delete"
+      ]
+    }
+  ],
+  "launchDescriptor": {
+    "dockerImage": "${info.app.name}:${info.app.version}",
+    "dockerArgs": {
+      "HostConfig": { "PortBindings": { "8078/tcp":  [{ "HostPort": "%p" }] } }
+    },
+    "dockerPull" : false
+  }
+}
