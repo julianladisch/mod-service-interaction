@@ -4,67 +4,67 @@ Checking for local settings at /home/ethan/FolioModules/ERM_Backend/mod-service-
 Configuring Spring Security Core ...
 ... finished configuring Spring Security Core
 
-2021-01-21 08:51:01.366 DEBUG --- [           main] c.k.w.t.l.ProxyAwareCachingLinkGenerator : Replacing the Default link generator with one that is Proxy aware.
-2021-01-21 08:51:02.027 DEBUG --- [           main] c.k.w.t.d.ExtendedWebDataBinder          : Create our new databinder
-2021-01-21 08:51:02.113  INFO --- [           main] com.k_int.okapi.OkapiClient              : Using default location for okapi at: http://localhost:9130
-2021-01-21 08:51:02.147  INFO --- [           main] com.k_int.okapi.OkapiClient              : Skipping registration with discovery as per config.
-2021-01-21 08:51:02.147  INFO --- [           main] com.k_int.okapi.OkapiClient              : Skipping deployment as per config.
-2021-01-21 08:51:03.235 DEBUG --- [           main] c.k.web.toolkit.WebToolkitGrailsPlugin   : Extending Domain classes.
+2021-02-01 08:56:54.958 DEBUG --- [           main] c.k.w.t.l.ProxyAwareCachingLinkGenerator : Replacing the Default link generator with one that is Proxy aware.
+2021-02-01 08:56:55.562 DEBUG --- [           main] c.k.w.t.d.ExtendedWebDataBinder          : Create our new databinder
+2021-02-01 08:56:55.631  INFO --- [           main] com.k_int.okapi.OkapiClient              : Using default location for okapi at: http://localhost:9130
+2021-02-01 08:56:55.656  INFO --- [           main] com.k_int.okapi.OkapiClient              : Skipping registration with discovery as per config.
+2021-02-01 08:56:55.657  INFO --- [           main] com.k_int.okapi.OkapiClient              : Skipping deployment as per config.
+2021-02-01 08:56:56.674 DEBUG --- [           main] c.k.web.toolkit.WebToolkitGrailsPlugin   : Extending Domain classes.
 Grails application running at http://localhost:8078 in environment: vagrant-db
-2021-01-21 08:57:33.422 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : See if we already have a datastore for diku_mod_service_interaction
-2021-01-21 08:57:33.428 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : register module for tenant/schema (diku/diku_mod_service_interaction)
-2021-01-21 08:57:33.438 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : Execute -- create schema (if not exists) diku_mod_service_interaction
-2021-01-21 08:57:33.446 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : updateAccountSchema(diku_mod_service_interaction,diku)
-2021-01-21 08:57:35.452 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : Database migration completed
-2021-01-21 08:57:35.452 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : adding tenant for diku_mod_service_interaction
-2021-01-21 08:57:36.048 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : added schema
-2021-01-21 08:57:36.048 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : allTenantIdentifiers is NULL - so establish the list and pull default values from the database
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_agreements does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_audit does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_calendar does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_circulation_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_configuration does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_courses does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_data_export does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.065 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_data_import_converter_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_email does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_event_config does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_feesfines does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_finance_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_inventory_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_kb_ebsco_java does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_licenses does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_login does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_notes does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_notify does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.066 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_oai_pmh does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_orders_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_organizations_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_password_validator does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_patron_blocks does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_permissions does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_pubsub does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_remote_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : Adding tenant diku and schema diku_mod_service_interaction
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_source_record_manager does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_source_record_storage does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.067 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_tags does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.068 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_template_engine does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.068 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_users does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.068 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : information_schema does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.068 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : pg_catalog does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.068 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : public does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.068 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : pubsub_config does not end with schema suffix _mod_service_interaction, skipping
-2021-01-21 08:57:36.078 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.settings.AppSetting for refData defaults
-2021-01-21 08:57:36.078 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyText for refData defaults
-2021-01-21 08:57:36.086 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyRefdataDefinition for refData defaults
-2021-01-21 08:57:36.086 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyRefdata for refData defaults
-2021-01-21 08:57:36.092 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyInteger for refData defaults
-2021-01-21 08:57:36.093 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyDecimal for refData defaults
-2021-01-21 08:57:36.093 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyContainer for refData defaults
-2021-01-21 08:57:36.093 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyBoolean for refData defaults
-2021-01-21 08:57:36.093 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyBlob for refData defaults
-2021-01-21 08:57:36.110 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : enableTenant exit cleanly
+2021-02-01 09:10:11.777 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : See if we already have a datastore for diku_mod_service_interaction
+2021-02-01 09:10:11.781 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : register module for tenant/schema (diku/diku_mod_service_interaction)
+2021-02-01 09:10:11.791 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : Execute -- create schema (if not exists) diku_mod_service_interaction
+2021-02-01 09:10:11.799 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : updateAccountSchema(diku_mod_service_interaction,diku)
+2021-02-01 09:10:13.765 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : Database migration completed
+2021-02-01 09:10:13.765 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : adding tenant for diku_mod_service_interaction
+2021-02-01 09:10:14.384 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : added schema
+2021-02-01 09:10:14.384 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : allTenantIdentifiers is NULL - so establish the list and pull default values from the database
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_agreements does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_audit does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_calendar does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_circulation_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_configuration does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_courses does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_data_export does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_data_import_converter_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_email does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_event_config does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.403 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_feesfines does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_finance_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_inventory_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_kb_ebsco_java does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_licenses does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_login does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_notes does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_notify does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_oai_pmh does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_orders_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_organizations_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_password_validator does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_patron_blocks does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_permissions does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_pubsub does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.404 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_remote_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : Adding tenant diku and schema diku_mod_service_interaction
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_source_record_manager does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_source_record_storage does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_tags does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_template_engine does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : diku_mod_users does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : information_schema does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : pg_catalog does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : public does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.405 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : pubsub_config does not end with schema suffix _mod_service_interaction, skipping
+2021-02-01 09:10:14.414 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.settings.AppSetting for refData defaults
+2021-02-01 09:10:14.415 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyText for refData defaults
+2021-02-01 09:10:14.420 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyRefdataDefinition for refData defaults
+2021-02-01 09:10:14.420 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyRefdata for refData defaults
+2021-02-01 09:10:14.424 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyInteger for refData defaults
+2021-02-01 09:10:14.425 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyDecimal for refData defaults
+2021-02-01 09:10:14.425 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyContainer for refData defaults
+2021-02-01 09:10:14.425 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyBoolean for refData defaults
+2021-02-01 09:10:14.426 DEBUG --- [  XNIO-1 task-1] c.k.w.t.r.GrailsDomainRefdataHelpers     : Testing class com.k_int.web.toolkit.custprops.types.CustomPropertyBlob for refData defaults
+2021-02-01 09:10:14.440 DEBUG --- [  XNIO-1 task-1] com.k_int.okapi.OkapiTenantAdminService  : enableTenant exit cleanly
 
 
 ***Completed tenant setup***
