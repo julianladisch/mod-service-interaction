@@ -100,8 +100,13 @@
           },
           "valueType": {
             "type": "string",
-            "enum": ["String", "Integer", "Float", "Boolean", "Date"],
+            "enum": ["String", "Integer", "Float", "Boolean", "Date", "Enum"],
             "description": "a string defining the type of property we are filtering on"
+          },
+          "enumValues": {
+            "type": "array",
+            "items":  { "$ref": "#/$defs/enumValues" },
+            "description": "A collection of options for the value, where valueType is 'Enum'"
           },
           "comparators": {
             "type": "array",
@@ -110,6 +115,36 @@
               "description": "a string containing a comparator for this filter value, eg '>' or '=='"
             },
             "description": "An array of comparators valid for this filter"
+          }
+        },
+        "anyOf": [
+          {
+            "not": {
+              "properties": {
+                "valueType": { "const": "Enum" }
+              },
+              "required": ["valueType"]
+            }
+          },
+          {
+            "required": ["enumValues"]
+          }
+        ]
+      },
+      "enumValues": {
+        "type": "object",
+        "title": "Enum Values",
+        "description": "One of the enum values for the field",
+        "additionalProperties": false,
+        "required": ["value"],
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "A value for this enum"
+          },
+          "label": {
+            "type": "string",
+            "description": "An optional label to replace the value of the enum"
           }
         }
       },
@@ -181,20 +216,7 @@
             "type": "string",
             "description": "an optional string containing a default link"
           }
-        },
-        "anyOf": [
-          {
-            "not": {
-              "properties": {
-                "configurable": { "const": false }
-              },
-              "required": ["configurable"]
-            }
-          },
-          {
-            "required": ["defValue"]
-          }
-        ]
+        }
       },
       "numberOfRows": {
         "type": "object",
