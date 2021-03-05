@@ -42,7 +42,7 @@
           "label": "Agreement name",
           "filterPath":"name",
           "valueType": "String",
-          "comparators": ["==", "!="]
+          "comparators": ["=~", "!~"]
         },
         {
           "name":"agreementStatus",
@@ -68,7 +68,14 @@
           "label": "End date",
           "filterPath":"endDate",
           "valueType": "Date",
-          "comparators": ["==", "!=", ">", ">=", "<", "<=", "isNull"]
+          "comparators": ["==", "!=", ">", ">=", "<", "<=", "isNull", "isNotNull"]
+        },
+        {
+          "name":"internalContact",
+          "label": "Internal contact",
+          "filterPath":"contacts.user",
+          "valueType": "UUID",
+          "comparators": ["==", "!="]
         }
       ]
     },
