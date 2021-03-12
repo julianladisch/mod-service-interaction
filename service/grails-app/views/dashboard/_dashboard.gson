@@ -1,8 +1,15 @@
 import  org.olf.Dashboard
+import  org.olf.WidgetInstance
 
 import groovy.transform.*
 
 @Field
 Dashboard dashboard
 
-json g.render (dashboard, [expand:['widgets']])
+json g.render (dashboard) {
+  widgets ( dashboard.widgets ) { WidgetInstance wi ->
+    id wi.id
+    weight wi.weight
+    name wi.name
+  }
+}
