@@ -100,10 +100,8 @@ pipeline {
         }
       }
       steps {
-        script {
-          def foliociLib = new org.folio.foliociCommands()
-          foliociLib.updateModDescriptor(env.MD) 
-        }
+        // md version number is handled in build.gradle
+        // just take whats in there
         postModuleDescriptor(env.MD)
       }
     }
