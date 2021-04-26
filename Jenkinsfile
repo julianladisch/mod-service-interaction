@@ -46,7 +46,8 @@ pipeline {
             }
             else {
               env.dockerRepo = 'folioci'
-              env.version = "${gradleVersion}.${env.BUILD_NUMBER}"
+              // build number is set in build.gradle
+              env.version = "${gradleVersion}"
             }
           }
         }
