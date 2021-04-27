@@ -65,15 +65,28 @@ pipeline {
         }
       }
     }
-   
+
     stage('Build Docker') {
       steps {
         dir(env.WORKSPACE) {
           sh "docker build --pull=true --no-cache=true -t ${env.name}:${env.dockerTagVersion} ."
         }
-        // debug
-        sh "cat $env.MD"
       } 
+    }
+
+    stage('Update MD') {
+      steps {
+        dir(env.BUILD_DIR) {
+          // md version number is handled in build.gradle
+          // update with docker repo information
+          sh "mv $MD ${MD}.orig"
+          sh """
+          cat ${MD}.orig | jq '.launchDescriptor.dockerImage |= \"${env.dockerRepo}/${env.name}:${env.dockerTagVersion}\" |
+              .launchDescriptor.dockerPull |= \"true\"' > $MD
+          """
+          sh "cat $env.MD"
+        }
+      }
     }
 
     stage('Publish Docker Image') { 
@@ -103,8 +116,6 @@ pipeline {
         }
       }
       steps {
-        // md version number is handled in build.gradle
-        // just take whats in there
         postModuleDescriptor(env.MD)
       }
     }
