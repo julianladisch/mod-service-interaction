@@ -7,6 +7,7 @@
   "name":"ERM Agreements",
   "definition":{
     "baseUrl":"/erm/sas",
+    "resource": "agreement",
     "results": {
       "columns": [
         {
@@ -31,6 +32,11 @@
           "name":"agreementStatus",
           "label": "Status",
           "accessPath":"agreementStatus.value",
+          "valueType": "String"
+        },
+        {
+          "name": "currentPeriodStartDate",
+          "label": "Current period start",
           "valueType": "String"
         }
       ]
@@ -75,6 +81,15 @@
           "label": "Internal contact",
           "filterPath":"contacts.user",
           "valueType": "UUID",
+          "resource": "user",
+          "comparators": ["==", "!="]
+        },
+        {
+          "name":"linkedLicense",
+          "label": "Linked license",
+          "filterPath":"linkedLicenses.remoteId",
+          "valueType": "UUID",
+          "resource": "license",
           "comparators": ["==", "!="]
         }
       ]
