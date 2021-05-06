@@ -11,6 +11,8 @@ import grails.databinding.SimpleMapDataBindingSource
 import static grails.async.Promises.*
 import com.k_int.web.toolkit.settings.AppSetting
 
+import org.grails.io.support.PathMatchingResourcePatternResolver
+import org.grails.io.support.Resource
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 import static groovy.io.FileType.FILES
@@ -56,26 +58,33 @@ CustomPropertyDefinition ensureTextProperty(String name, boolean local = true, S
 }
 
 
+// TODO remove all of this when bootstrapping is no longer required
+PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver()
+
 def jsonSlurper = new JsonSlurper()
 
 log.info 'Importing widget types'
-def widgetTypeDirectory = new File('./src/main/okapi/tenant/sample_data/widgetTypes')
-widgetTypeDirectory.traverse (type: FILES, maxDepth: 0) { file ->
-  def wt = jsonSlurper.parse(file)
+
+Resource[] widgetTypes = resolver.getResources("classpath:sample_data/widgetTypes/*")
+
+widgetTypes.each { resource ->
+  def stream = resource.getInputStream()
+  def wt = jsonSlurper.parse(stream)
 
   WidgetType widgetType = WidgetType.findByNameAndTypeVersion(wt.name, wt.version) ?: new WidgetType(
     name: wt.name,
     typeVersion: wt.version,
     schema: JsonOutput.toJson(wt.schema)
-  ).save(flush: true, failOnError: true)
+  ).save(flush: true, failOnError: true) 
 }
-
 
 log.info 'Importing widget definitions'
 
-def widgetDefDirectory = new File('./src/main/okapi/tenant/sample_data/widgetDefinitions')
-widgetDefDirectory.traverse (type: FILES, maxDepth: 0) { file ->
-  def wd = jsonSlurper.parse(file)
+
+Resource[] widgetDefs = resolver.getResources("classpath:sample_data/widgetDefinitions/*")
+widgetDefs.each { resource ->
+  def stream = resource.getInputStream()
+  def wd = jsonSlurper.parse(stream)
 
   WidgetType type = WidgetType.findByNameAndTypeVersion(wd.type.name, wd.type.version)
   if (type != null) {
