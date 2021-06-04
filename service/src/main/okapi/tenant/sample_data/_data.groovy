@@ -15,7 +15,6 @@ import org.grails.io.support.PathMatchingResourcePatternResolver
 import org.grails.io.support.Resource
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
-import static groovy.io.FileType.FILES
 
 import org.olf.WidgetType
 import org.olf.WidgetDefinition
