@@ -1,3 +1,5 @@
+## 1.1.0 (In Progress)
+
 ## 1.0.0 2021-06-15
 * ERM-1740: Method to refresh WidgetTypes from scratch
 * ERM-1738: Support health check endpoint for mod-service-interaction
