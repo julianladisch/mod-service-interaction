@@ -11,7 +11,7 @@ class Log implements MultiTenant<Log> {
   String message
 
   static mapping = {
-         id column: 'log_id', generator: 'assigned'
+         id column: 'log_id', generator: 'uuid2', length:36
     version column: 'log_version'
     message column: 'log_message'
   }
