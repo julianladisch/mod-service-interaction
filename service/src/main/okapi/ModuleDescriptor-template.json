@@ -142,6 +142,31 @@
           "methods": ["GET"],
           "pathPattern": "/servint/admin/*",
           "permissionsRequired": ["servint.admin.action"]
+        },
+        {
+          "methods": [ "GET" ],
+          "pathPattern": "/servint/logs",
+          "permissionsRequired": ["servint.logs.collection.get"]
+        },
+        {
+          "methods": [ "POST" ],
+          "pathPattern": "/servint/logs",
+          "permissionsRequired": ["servint.logs.item.post"]
+        },
+        {
+          "methods": [ "GET" ],
+          "pathPattern": "/servint/logs/{id}",
+          "permissionsRequired": ["servint.logs.item.get"]
+        },
+        {
+          "methods": [ "PUT" ],
+          "pathPattern": "/servint/logs/{id}",
+          "permissionsRequired": ["servint.logs.item.put"]
+        },
+        {
+          "methods": [ "DELETE" ],
+          "pathPattern": "/servint/logs/{id}",
+          "permissionsRequired": ["servint.logs.item.delete"]
         }
       ]
     },
@@ -411,6 +436,59 @@
       ]
     },
     {
+      "permissionName": "servint.logs.collection.get",
+      "displayName": "Logs collection get",
+      "description": "Get all 'Log' objects"
+    },
+    {
+      "permissionName": "servint.logs.item.get",
+      "displayName": "Logs item get",
+      "description": "Get a 'Log' object"
+    },
+    {
+      "permissionName": "servint.logs.item.post",
+      "displayName": "Logs item get",
+      "description": "Post a 'Log' object"
+    },
+    {
+      "permissionName": "servint.logs.item.put",
+      "displayName": "Logs item get",
+      "description": "Put a 'Log' object"
+    },
+    {
+      "permissionName": "servint.logs.item.delete",
+      "displayName": "Logs item get",
+      "description": "Delete a 'Log' object"
+    },
+    {
+      "permissionName": "servint.logs.view",
+      "displayName": "Logs view",
+      "description": "View 'Log' objects",
+      "subPermissions": [
+        "servint.logs.collection.get",
+        "servint.logs.item.get"
+      ]
+    },
+    {
+      "permissionName": "servint.logs.edit",
+      "displayName": "Logs edit",
+      "description": "View and edit 'Log' objects",
+      "subPermissions": [
+        "servint.logs.view",
+        "servint.logs.item.post",
+        "servint.logs.item.put"
+      ]
+    },
+    {
+      "permissionName": "servint.logs.manage",
+      "displayName": "Logs manage",
+      "description": "View, edit and delete 'Log' objects",
+      "subPermissions": [
+        "servint.logs.edit",
+        "servint.logs.item.delete"
+      ]
+    },
+    {
       "permissionName": "servint.admin.action",
       "displayName": "Administrator actions",
       "description": "Allow administrator to perform actions"
@@ -424,7 +502,8 @@
         "servint.dashboards.collection.get",
         "servint.dashboards.manage",
         "servint.admin.action",
-        "servint.widgetDefinitions.manage"
+        "servint.widgetDefinitions.manage",
+        "servint.logs.manage"
       ]
     }
   ],

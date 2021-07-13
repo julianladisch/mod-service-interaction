@@ -37,6 +37,10 @@ class UrlMappings {
 
     "/servint/admin/$action"(controller:'admin')
 
+    "/servint/logs" (resources: 'log')
+
+    // Multi-interface endpoint to expose WidgetDefinitions from within mod-serv-int itself
     "/dashboard/definitions" (resources: 'widgetDefinition', method: 'GET')
+
   }
 }

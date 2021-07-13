@@ -1,0 +1,7 @@
+import  org.olf.Log
+import groovy.transform.*
+
+@Field
+Log log
+
+json g.render (log)
