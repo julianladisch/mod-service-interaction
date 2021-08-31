@@ -22,6 +22,14 @@ This is the main starter repository for the Grails-based OLF - ERM backend modul
 
 - [Getting started](service/docs/getting-started.md "Getting started")
 
+# For ops folks trying to deploy the module
+
+A sample k8s deployment and service resource description can be [found in the scripts directory](https://github.com/folio-org/mod-service-interaction/blob/master/scripts/k8s_deployment_template.yaml)
+
+Most importantly, the module requires a number of ENV settings which are different to the RMB defaults
+- OKAPI_SERVICE_PORT - port number for okapi
+- OKAPI_SERVICE_HOST - host for okapi - in K8S [namespace.]hostname or just hostname if you are running the pod in the same namespace as okapi
+
 ## Additional information
 
 ### Issue tracker
