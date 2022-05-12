@@ -30,13 +30,48 @@ class SILifecycleSpec extends BaseSpec {
 
   void "Configure Number Generator" () {
 
-    when: '1==1'
-   
-      1==1
+    when: 'We post the user barcode number generator'
+      log.debug("Create new number generator for user barcode")
 
-    then: 'ok'
-      1==1
+      Map user_barcode_numgen = [
+        'code': 'UserBarcode',
+        'name': 'User Barcode',
+        'sequences':[
+          [ 'code':'patron',   'prefix':'user-',   postfix:null,    format:'000000000' ],
+          [ 'code':'staff',    'prefix':'staff-',  postfix:'-test', format:'000,000,000' ],
+          [ 'code':'noformat', 'prefix':'nf-' ]
+        ]
+      ]
+
+      Map respMap = doPost("/servint/numberGenerators", user_barcode_numgen)
+
+    then: "Response is good and we have a new ID"
+      respMap.id != null
   }
 
+  void "Get next number in user patron sequence"(gen, seq, expected_response_code, expected_result) {
+    when: 'We post to the getNextNumber action'
+      Map resp = doGet("/servint/numberGenerators/getNextNumber", ['generator':gen, 'sequence':seq] )
+    then: 'We get the next number'
+      log.debug("Got result ${resp}");
+      resp != null;
+      resp.nextValue == expected_result
+    where:
+      gen | seq | expected_response_code | expected_result
+      'UserBarcode' | 'patron'    | 200 | 'user-000000000'
+      'UserBarcode' | 'patron'    | 200 | 'user-000000001'
+      'UserBarcode' | 'patron'    | 200 | 'user-000000002'
+      'UserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'
+      'UserBarcode' | 'noformat'  | 200 | 'nf-0'
+  }
+
+  void "Get Number Generator Record"() {
+    when: 'we get the UserBarcode generator'
+      Map resp = doGet("/servint/numberGenerators", [filters:['code==UserBarcode'], stats:'true'])
+
+    then: 'Get the record back'
+      log.debug("Got resp ${resp}");
+      resp != null
+  }
 }
 

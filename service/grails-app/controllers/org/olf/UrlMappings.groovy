@@ -37,6 +37,12 @@ class UrlMappings {
 
     "/servint/admin/$action"(controller:'admin')
 
+    "/servint/numberGenerators" (resources:'numberGenerator') {
+      collection {
+        "/getNextNumber" ( controller:'numberGenerator', action: 'getNextNumber')
+      }
+    }
+
     "/dashboard/definitions" (resources: 'widgetDefinition', method: 'GET')
   }
 }

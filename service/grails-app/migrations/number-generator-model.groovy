@@ -18,9 +18,10 @@ databaseChangeLog = {
       column(name: "ngs_version", type: "BIGINT") { constraints(nullable: "false") }
       column(name: "ngs_owner", type: "VARCHAR(36)") { constraints(nullable: "false") }
       column(name: "ngs_code", type: "VARCHAR(36)") { constraints(nullable: "false") }
-      column(name: "ngs_prefix", type: "VARCHAR(100)") { constraints(nullable: "false") }
-      column(name: "ngs_postfix", type: "VARCHAR(100)") { constraints(nullable: "false") }
-      column(name: "ngs_next_value", type: "BIGINT") { constraints(nullable: "false") }
+      column(name: "ngs_prefix", type: "VARCHAR(100)")
+      column(name: "ngs_postfix", type: "VARCHAR(100)")
+      column(name: "ngs_next_value", type: "BIGINT")
+      column(name: "ngs_format", type: "VARCHAR(20)")
     }
 
     addPrimaryKey(columnNames: "ngs_id", constraintName: "NumberGeneratorSequencePK", tableName: "number_generator_sequence")
