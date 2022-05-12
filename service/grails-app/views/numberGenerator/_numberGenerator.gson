@@ -1,0 +1,10 @@
+import org.olf.numgen.NumberGenerator
+
+import groovy.transform.*
+
+@Field
+NumberGenerator numberGenerator
+
+json g.render (numberGenerator, [expand:[ 'sequences' ], excludes: []]) {
+}
+

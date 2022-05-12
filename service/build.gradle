@@ -63,7 +63,6 @@ eclipse {
 repositories {
   //mavenLocal()
   maven { url 'https://maven.k-int.com/content/repositories/public' }
-  jcenter()
   maven { url 'https://repo.grails.org/grails/core' }
   maven { url 'https://maven.indexdata.com/' }
   maven { url "https://maven.k-int.com/content/repositories/releases" }
