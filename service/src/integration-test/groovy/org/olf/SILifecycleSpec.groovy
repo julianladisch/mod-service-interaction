@@ -39,7 +39,8 @@ class SILifecycleSpec extends BaseSpec {
         'sequences':[
           [ 'code':'patron',   'prefix':'user-',   postfix:null,    format:'000000000' ],
           [ 'code':'staff',    'prefix':'staff-',  postfix:'-test', format:'000,000,000' ],
-          [ 'code':'noformat', 'prefix':'nf-' ]
+          [ 'code':'noformat', 'prefix':'nf-' ],
+          [ 'code':'highinit', 'prefix':'hi-', 'format':'000000000', 'nextValue':100000 ]
         ]
       ]
 
@@ -63,6 +64,7 @@ class SILifecycleSpec extends BaseSpec {
       'UserBarcode' | 'patron'    | 200 | 'user-000000002'
       'UserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'
       'UserBarcode' | 'noformat'  | 200 | 'nf-0'
+      'UserBarcode' | 'highinit'  | 200 | 'hi-000100000'
   }
 
   void "Get Number Generator Record"() {
@@ -72,6 +74,7 @@ class SILifecycleSpec extends BaseSpec {
     then: 'Get the record back'
       log.debug("Got resp ${resp}");
       resp != null
+      resp.totalRecords == 1
   }
 }
 
