@@ -523,7 +523,10 @@
   "launchDescriptor": {
     "dockerImage": "${info.app.name}:${info.app.version}",
     "dockerArgs": {
-      "HostConfig": { "PortBindings": { "8080/tcp":  [{ "HostPort": "%p" }] } }
+      "HostConfig": {
+        "Memory": 1073741824,
+        "PortBindings": { "8080/tcp":  [{ "HostPort": "%p" }] }
+      }
     },
     "env": [
       { "name": "JAVA_OPTIONS", "value": "-server -XX:+UseContainerSupport -XX:MaxRAMPercentage=55.0 -XX:+PrintFlagsFinal" }
