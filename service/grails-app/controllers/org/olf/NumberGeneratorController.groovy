@@ -43,13 +43,23 @@ class NumberGeneratorController extends OkapiTenantAwareController<NumberGenerat
         }
 
         if ( next_seqno != null ) {
+
+          String value_without_checksum = null;
+
           if ( ngs.format != null) {
             DecimalFormat df = new DecimalFormat(ngs.format)
-            result.nextValue = "${ngs.prefix?:''}${df.format(next_seqno)}${ngs.postfix?:''}"
+            value_without_checksum = "${ngs.prefix?:''}${df.format(next_seqno)}${ngs.postfix?:''}"
           }
           else {
-            result.nextValue = "${ngs.prefix?:''}${next_seqno}${ngs.postfix?:''}"
+            value_without_checksum = "${ngs.prefix?:''}${next_seqno}${ngs.postfix?:''}"
           }
+
+          String checksum = null;
+          if ( ngs.checkDigitAlgo != null ) {
+            checksum = generateCheckSum(ngs.checkDigitAlgo.value, value_without_checksum)
+          }
+
+          result.nextValue = "${value_without_checksum}${checksum?:''}".toString();
         }
 
         ngs.save(flush:true, failOnError:true);
@@ -61,5 +71,11 @@ class NumberGeneratorController extends OkapiTenantAwareController<NumberGenerat
     }
 
     render result as JSON;
+  }
+
+  // See https://www.activebarcode.com/codes/checkdigit/modulo47.html
+  private String generateCheckSum(String algorithm, String checksum) {
+    log.debug("generateCheckSum(${algorithm},${checksum})");
+    return null;
   }
 }
