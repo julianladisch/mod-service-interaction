@@ -40,6 +40,7 @@ databaseChangeLog = {
   changeSet(author: "ianibbo (manual)", id: "2022-06-15-0811-001") {
     addColumn(tableName: "number_generator_sequence") {
       column(name: "ngs_check_digit_algorithm", type: "VARCHAR(36)")
+      column(name: "ngs_output_template", type: "VARCHAR(256)")
     }
   }
 

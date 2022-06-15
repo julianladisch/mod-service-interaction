@@ -37,10 +37,18 @@ class SILifecycleSpec extends BaseSpec {
         'code': 'UserBarcode',
         'name': 'User Barcode',
         'sequences':[
-          [ 'code':'patron',   'prefix':'user-',   postfix:null,    format:'000000000' ],
-          [ 'code':'staff',    'prefix':'staff-',  postfix:'-test', format:'000,000,000' ],
-          [ 'code':'noformat', 'prefix':'nf-' ],
-          [ 'code':'highinit', 'prefix':'hi-', 'format':'000000000', 'nextValue':100000 ]
+          [ 'code':'patron',    'prefix':'user',   postfix:null,    format:'000000000' ],
+          [ 'code':'staff',     'prefix':'staff',  postfix:'test', format:'000,000,000' ],
+          [ 'code':'noformat',  'prefix':'nf' ],
+          [ 'code':'highinit',  'prefix':'hi', 'format':'000000000', 'nextValue':100000 ],
+          [ 'code':'mod10test', 'format':'000000000', 'nextValue':100000, 'checkDigitAlgo':'Modulo10' ],
+          [ 'code':'mod11test', 'format':'000000000', 'nextValue':100000, 'checkDigitAlgo':'Modulo11' ],
+          [ 'code':'mod16test', 'format':'000000000', 'nextValue':100000, 'checkDigitAlgo':'Modulo16' ],
+          [ 'code':'mod43test', 'format':'000000000', 'nextValue':100000, 'checkDigitAlgo':'Modulo43' ],
+          [ 'code':'mod47test', 'format':'000000000', 'nextValue':100000, 'checkDigitAlgo':'Modulo47' ],
+          [ 'code':'069',       'prefix':'069', 'postfix':'1', 'format':'000000000', 'nextValue':1, 'checkDigitAlgo':'EAN13' ],
+          [ 'code':'0698',      'format':'000000000', 'nextValue':1, 'checkDigitAlgo':'EAN13', 'outputTemplate':'0698${generated_number}${checksum}' ],
+          [ 'code':'DD',        'prefix':'DD',   'format':'000000000', 'nextValue':1 ]
         ]
       ]
 
@@ -65,6 +73,10 @@ class SILifecycleSpec extends BaseSpec {
       'UserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'
       'UserBarcode' | 'noformat'  | 200 | 'nf-0'
       'UserBarcode' | 'highinit'  | 200 | 'hi-000100000'
+      'UserBarcode' | 'mod10test' | 200 | '000100000'
+      'UserBarcode' | '069'       | 200 | '069-000000001-1-7'
+      'UserBarcode' | '0698'      | 200 | '06980000000017'
+      'UserBarcode' | 'DD'        | 200 | 'DD-000000001'
   }
 
   void "Get Number Generator Record"() {

@@ -14,8 +14,9 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
   String postfix
   String format
   Long nextValue
+  String outputTemplate
 
-  @Defaults(['None', 'Modulo10', 'Modulo11', 'Modulo16', 'Modulo43', 'Modulo47'])
+  @Defaults(['None', 'EAN13', 'Modulo10', 'Modulo11', 'Modulo16', 'Modulo43', 'Modulo47'])
   RefdataValue checkDigitAlgo
 
   static constraints = {
@@ -24,6 +25,7 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
          nextValue(nullable: true)
             format(nullable: true)
     checkDigitAlgo(nullable: true)
+    outputTemplate(nullable: true)
   }
 
 
@@ -37,9 +39,10 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
          nextValue column: 'ngs_next_value'
             format column: 'ngs_format'
     checkDigitAlgo column: 'ngs_check_digit_algorithm'
+    outputTemplate column: 'ngs_output_template'
   }
 
   public String toString() {
-    return "NumberGeneratorSequence(${owner?.code}.${code} ${prefix} ${nextValue} ${postfix} ${format} ${checkDigitAlgo?.value})".toString();
+    return "NumberGeneratorSequence(${owner?.code}.${code} ${prefix} ${nextValue} ${postfix} ${format} ${checkDigitAlgo?.value},${outputTemplate})".toString();
   }
 }
