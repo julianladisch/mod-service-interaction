@@ -33,6 +33,10 @@ class NumberGeneratorController extends OkapiTenantAwareController<NumberGenerat
         lock true
       }
 
+      if ( ngs == null ) {
+        ngs = initialiseDefaultSequence(generator,sequence);
+      }
+
       log.debug("Got seq : ${ngs}");
 
       Long next_seqno = null;
@@ -92,4 +96,16 @@ class NumberGeneratorController extends OkapiTenantAwareController<NumberGenerat
     return result;
   }
 
+  private NumberGeneratorSequence initialiseDefaultSequence(String generator, String sequence) {
+    NumberGeneratorSequence result = null;
+    NumberGenerator ng = NumberGenerator.findByCode(generator) ?: new NumberGenerator(code:generator, name:generator).save(flush:true, failOnError:true)
+    result = new NumberGeneratorSequence(owner: ng,
+                                         code: sequence,
+                                         prefix: null,
+                                         postfix: null,
+                                         format: '000000000',  // Default to a 9 digit 0 padded number
+                                         nextValue: 1,
+                                         outputTemplate:null).save(flush:true, failOnError:true);
+    return result;
+  }
 }

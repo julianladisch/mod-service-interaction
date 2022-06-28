@@ -88,5 +88,21 @@ class SILifecycleSpec extends BaseSpec {
       resp != null
       resp.totalRecords == 1
   }
+
+  void "Test the automatic creation of number generators"(gen, seq, expected_response_code, expected_result) {
+    when: 'We post to the getNextNumber action'
+      Map resp = doGet("/servint/numberGenerators/getNextNumber", ['generator':gen, 'sequence':seq] )
+
+    then: 'We get the next number'
+      log.debug("Got result ${resp}");
+      resp != null;
+      resp.nextValue == expected_result
+    where:
+      gen | seq | expected_response_code | expected_result
+      'OA' | 'default'    | 200 | '000000001'
+      'OA' | 'default'    | 200 | '000000002'
+      'OA' | 'notdef'     | 200 | '000000001'
+      'Wibble' | 'dibble' | 200 | '000000001'
+  }
 }
 
