@@ -1,3 +1,5 @@
+## 1.2.0 In progress
+
 ## 1.1.0 2022-06-29
   * ERM-2134 Service Interaction - mod-service-interaction lacks memory limit in launch descriptor
   * ERM-2071 mod-service-interaction Grails wrapper SAXParseException
