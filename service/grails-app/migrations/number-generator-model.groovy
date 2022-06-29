@@ -44,4 +44,10 @@ databaseChangeLog = {
     }
   }
 
+  changeSet(author: "ianibbo (manual)", id: "2022-06-29-0843-001") {
+    addColumn(tableName: "number_generator") {
+      column(name: "ng_default_seq_code", type: "VARCHAR(36)")
+    }
+  }
+
 }
