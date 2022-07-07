@@ -1,4 +1,11 @@
-## 1.1.0 (In Progress)
+## 1.2.0 In progress
+
+## 1.1.0 2022-06-29
+  * ERM-2134 Service Interaction - mod-service-interaction lacks memory limit in launch descriptor
+  * ERM-2071 mod-service-interaction Grails wrapper SAXParseException
+  * Number generator
+    * Added Number Generator domain classes
+    * Number Generator endpoints and services
 
 ## 1.0.0 2021-06-15
 * ERM-1740: Method to refresh WidgetTypes from scratch
