@@ -34,8 +34,8 @@ class SILifecycleSpec extends BaseSpec {
       log.debug("Create new number generator for user barcode")
 
       Map user_barcode_numgen = [
-        'code': 'UserBarcode',
-        'name': 'User Barcode',
+        'code': 'TSTUserBarcode',
+        'name': 'TSTUser Barcode',
         'sequences':[
           [ 'code':'patron',    'prefix':'user',   postfix:null,    format:'000000000' ],
           [ 'code':'staff',     'prefix':'staff',  postfix:'test', format:'000,000,000' ],
@@ -67,21 +67,21 @@ class SILifecycleSpec extends BaseSpec {
       resp.nextValue == expected_result
     where:
       gen | seq | expected_response_code | expected_result
-      'UserBarcode' | 'patron'    | 200 | 'user-000000000'
-      'UserBarcode' | 'patron'    | 200 | 'user-000000001'
-      'UserBarcode' | 'patron'    | 200 | 'user-000000002'
-      'UserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'
-      'UserBarcode' | 'noformat'  | 200 | 'nf-0'
-      'UserBarcode' | 'highinit'  | 200 | 'hi-000100000'
-      'UserBarcode' | 'mod10test' | 200 | '000100000'
-      'UserBarcode' | '069'       | 200 | '069-000000001-1-7'
-      'UserBarcode' | '0698'      | 200 | '06980000000017'
-      'UserBarcode' | 'DD'        | 200 | 'DD-000000001'
+      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000000'
+      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000001'
+      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000002'
+      'TSTUserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'
+      'TSTUserBarcode' | 'noformat'  | 200 | 'nf-0'
+      'TSTUserBarcode' | 'highinit'  | 200 | 'hi-000100000'
+      'TSTUserBarcode' | 'mod10test' | 200 | '000100000'
+      'TSTUserBarcode' | '069'       | 200 | '069-000000001-1-7'
+      'TSTUserBarcode' | '0698'      | 200 | '06980000000017'
+      'TSTUserBarcode' | 'DD'        | 200 | 'DD-000000001'
   }
 
   void "Get Number Generator Record"() {
     when: 'we get the UserBarcode generator'
-      Map resp = doGet("/servint/numberGenerators", [filters:['code==UserBarcode'], stats:'true'])
+      Map resp = doGet("/servint/numberGenerators", [filters:['code==TSTUserBarcode'], stats:'true'])
 
     then: 'Get the record back'
       log.debug("Got resp ${resp}");
