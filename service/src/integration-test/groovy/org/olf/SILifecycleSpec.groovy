@@ -36,8 +36,8 @@ class SILifecycleSpec extends BaseSpec {
       log.debug("Create new number generator for user barcode")
 
       Map user_barcode_numgen = [
-        'code': 'UserBarcode',
-        'name': 'User Barcode',
+        'code': 'TSTUserBarcode',
+        'name': 'TSTUser Barcode',
         'defaultSequenceCode': 'patron',
         'sequences':[
           [ 'code':'patron',    'prefix':'user',   postfix:null,    format:'000000000' ],
@@ -72,23 +72,23 @@ class SILifecycleSpec extends BaseSpec {
       resp.nextValue == expected_result
     where:
       gen | seq | expected_response_code | expected_result | tmpl
-      'UserBarcode' | 'patron'    | 200 | 'user-000000000'          | DEFAULT_TEMPLATE
-      'UserBarcode' | 'patron'    | 200 | 'user-000000001'          | DEFAULT_TEMPLATE
-      'UserBarcode' | 'patron'    | 200 | 'user-000000002'          | DEFAULT_TEMPLATE
-      'UserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'  | DEFAULT_TEMPLATE
-      'UserBarcode' | 'noformat'  | 200 | 'nf-0'                    | DEFAULT_TEMPLATE
-      'UserBarcode' | 'highinit'  | 200 | 'hi-000100000'            | DEFAULT_TEMPLATE
-      'UserBarcode' | 'mod10test' | 200 | '000100000'               | DEFAULT_TEMPLATE
-      'UserBarcode' | '069'       | 200 | '069-000000001-1-7'       | DEFAULT_TEMPLATE
-      'UserBarcode' | '0698'      | 200 | '06980000000017'          | '0698${generated_number}${checksum}'
-      'UserBarcode' | '0699'      | 200 | '0699-000000001-7-post'   | '0699-${generated_number}-${checksum}-post'
-      'UserBarcode' | '0700'      | 200 | '0700-0000-7-00001-post'  | '0700-${generated_number.substring(0,4)}-${checksum}-${generated_number.substring(5,9)}-post'
-      'UserBarcode' | 'DD'        | 200 | 'DD-000000001'            | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000000'          | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000001'          | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000002'          | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'  | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'noformat'  | 200 | 'nf-0'                    | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'highinit'  | 200 | 'hi-000100000'            | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'mod10test' | 200 | '000100000'               | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | '069'       | 200 | '069-000000001-1-7'       | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | '0698'      | 200 | '06980000000017'          | '0698${generated_number}${checksum}'
+      'TSTUserBarcode' | '0699'      | 200 | '0699-000000001-7-post'   | '0699-${generated_number}-${checksum}-post'
+      'TSTUserBarcode' | '0700'      | 200 | '0700-0000-7-00001-post'  | '0700-${generated_number.substring(0,4)}-${checksum}-${generated_number.substring(5,9)}-post'
+      'TSTUserBarcode' | 'DD'        | 200 | 'DD-000000001'            | DEFAULT_TEMPLATE
   }
 
   void "Get Number Generator Record"() {
     when: 'we get the UserBarcode generator'
-      Map resp = doGet("/servint/numberGenerators", [filters:['code==UserBarcode'], stats:'true'])
+      Map resp = doGet("/servint/numberGenerators", [filters:['code==TSTUserBarcode'], stats:'true'])
 
     then: 'Get the record back'
       log.debug("Got resp ${resp}");
