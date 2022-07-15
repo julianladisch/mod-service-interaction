@@ -36,7 +36,15 @@ public class HousekeepingService {
               sequences: [
                 [ code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'oa-${generated_number}-${checksum}' ]
               ]
-            ]
+            ],
+            [
+              code:'Patron',
+              name:'Patron',
+              sequences: [
+                [ code:'patron',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'P${generated_number}-${checksum}' ],
+                [ code:'staff',      'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'S${generated_number}-${checksum}' ]
+              ]
+            ],
           ].each { ng_defn ->
             NumberGenerator ng = NumberGenerator.findByCode(ng_defn.code) ?: new NumberGenerator(code:ng_defn.code, name:ng_defn.name).save(flush:true, failOnError:true);
             ng_defn.sequences.each { seq_defn ->
