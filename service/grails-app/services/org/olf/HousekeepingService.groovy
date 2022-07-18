@@ -38,6 +38,13 @@ public class HousekeepingService {
               ]
             ],
             [
+              code:'patronRequest',
+              name:'Patron Request',
+              sequences: [
+                [ code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'oa-${generated_number}-${checksum}' ]
+              ]
+            ],
+            [
               code:'Patron',
               name:'Patron',
               sequences: [
@@ -48,6 +55,17 @@ public class HousekeepingService {
           ].each { ng_defn ->
             NumberGenerator ng = NumberGenerator.findByCode(ng_defn.code) ?: new NumberGenerator(code:ng_defn.code, name:ng_defn.name).save(flush:true, failOnError:true);
             ng_defn.sequences.each { seq_defn ->
+              NumberGeneratorSequence ngs = NumberGeneratorSequence.findByOwnerAndCode(ng, seq_defn.code)
+              if ( ngs == null ) {
+                ngs = new NumberGeneratorSequence(
+                        owner: ng,
+                        code: seq_defn.code,
+                        format: seq_defn.format,
+                        nextValue: 1,
+                        checkDigitAlgo: seq_defn.checkDigitAlgo ? RefdataValue.lookupOrCreate('NumberGeneratorSequence.checkDigitAlgo',seq_defn.checkDigitAlgo) : null,
+                        outputTemplate:seq_defn.outputTemplate
+                      ).save(flush:true, failOnError:true)
+              }
             }
           }
         }

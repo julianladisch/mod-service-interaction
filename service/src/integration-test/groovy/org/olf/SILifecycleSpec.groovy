@@ -72,11 +72,11 @@ class SILifecycleSpec extends BaseSpec {
       resp.nextValue == expected_result
     where:
       gen | seq | expected_response_code | expected_result | tmpl
-      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000000'          | DEFAULT_TEMPLATE
       'TSTUserBarcode' | 'patron'    | 200 | 'user-000000001'          | DEFAULT_TEMPLATE
       'TSTUserBarcode' | 'patron'    | 200 | 'user-000000002'          | DEFAULT_TEMPLATE
-      'TSTUserBarcode' | 'staff'     | 200 | 'staff-000,000,000-test'  | DEFAULT_TEMPLATE
-      'TSTUserBarcode' | 'noformat'  | 200 | 'nf-0'                    | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'patron'    | 200 | 'user-000000003'          | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'staff'     | 200 | 'staff-000,000,001-test'  | DEFAULT_TEMPLATE
+      'TSTUserBarcode' | 'noformat'  | 200 | 'nf-1'                    | DEFAULT_TEMPLATE
       'TSTUserBarcode' | 'highinit'  | 200 | 'hi-000100000'            | DEFAULT_TEMPLATE
       'TSTUserBarcode' | 'mod10test' | 200 | '000100000'               | DEFAULT_TEMPLATE
       'TSTUserBarcode' | '069'       | 200 | '069-000000001-1-7'       | DEFAULT_TEMPLATE

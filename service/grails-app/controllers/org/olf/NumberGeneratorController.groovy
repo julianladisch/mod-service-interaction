@@ -42,9 +42,10 @@ class NumberGeneratorController extends OkapiTenantAwareController<NumberGenerat
       Long next_seqno = null;
 
       if ( ngs != null  ) {
-        if ( ngs.nextValue == null ) {
-          next_seqno=0
-          ngs.nextValue = 1
+        // Checksum algorithms explode if given 0 as a value
+        if ( ( ngs.nextValue == null ) || ( ngs.nextValue == 1 ) ) {
+          next_seqno=1
+          ngs.nextValue = 2
         }
         else {
           next_seqno=ngs.nextValue++
