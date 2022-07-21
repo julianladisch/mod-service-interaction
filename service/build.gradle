@@ -111,7 +111,6 @@ dependencies {
   runtime "javax.xml.bind:jaxb-api:2.3.1"
 
   profile "org.grails.profiles:rest-api"
-  runtime "com.zaxxer:HikariCP:3.2.0"
   
 
   /************** Testing ************/

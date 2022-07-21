@@ -39,9 +39,9 @@ public class HousekeepingService {
             ],
             [
               code:'patronRequest',
-              name:'Patron Request',
+              name:'Patron Request (ILL)',
               sequences: [
-                [ code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'oa-${generated_number}-${checksum}' ]
+                [ code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'ill-${generated_number}-${checksum}' ]
               ]
             ],
             [

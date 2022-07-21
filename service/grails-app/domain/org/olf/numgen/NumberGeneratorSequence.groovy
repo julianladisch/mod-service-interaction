@@ -15,6 +15,8 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
   String format
   Long nextValue
   String outputTemplate
+  String description
+  Boolean enabled = Boolean.TRUE
 
   @Defaults(['None', 'EAN13', 'Modulo10', 'Modulo11', 'Modulo16', 'Modulo43', 'Modulo47'])
   RefdataValue checkDigitAlgo
@@ -26,6 +28,8 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
             format(nullable: true)
     checkDigitAlgo(nullable: true)
     outputTemplate(nullable: true)
+       description(nullable: true)
+           enabled(nullable: true)
   }
 
 
@@ -40,6 +44,8 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
             format column: 'ngs_format'
     checkDigitAlgo column: 'ngs_check_digit_algorithm'
     outputTemplate column: 'ngs_output_template'
+       description column: 'ngs_description'
+           enabled column: 'ngs_enabled'
   }
 
   public String toString() {

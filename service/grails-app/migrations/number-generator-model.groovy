@@ -50,4 +50,18 @@ databaseChangeLog = {
     }
   }
 
+  changeSet(author: "ianibbo (manual)", id: "2022-07-21-0758-001") {
+
+    addColumn(tableName: "number_generator") {
+      column(name: "ng_description", type: "VARCHAR(256)")
+    }
+
+    addColumn(tableName: "number_generator_sequence") {
+       column(name: 'ngs_description', type: "VARCHAR(256)")
+    }
+
+    addColumn(tableName: "number_generator_sequence") {
+       column(name: 'ngs_enabled', type: "BOOLEAN")
+    }
+  }
 }
