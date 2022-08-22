@@ -9,87 +9,178 @@ import groovy.util.logging.Slf4j
 import com.k_int.okapi.OkapiTenantAwareController
 
 import org.olf.ExternalUserService
+import org.olf.DashboardService
 
 @Slf4j
 @CurrentTenant
 class DashboardController extends OkapiTenantAwareController<DashboardController> {
+
   DashboardController() {
     super(Dashboard)
   }
 
-  def externalUserService
+  ExternalUserService externalUserService
+  DashboardService dashboardService
+
   static responseFormats = ['json', 'xml']
 
-  public getUserSpecificDashboards() {
-    String patronId = getPatron().id
-    log.debug("DashboardController::getUserSpecificDashboards called for patron (${patronId}) ")
-    ExternalUser proxiedUser = externalUserService.resolveUser(patronId)
-    respond doTheLookup({
-        eq 'owner.id', proxiedUser.id
-    })
+  public String getDashboardId() {
+    // This feels v flaky... the default REST endpoints use `id` and the others use dashboardId
+    // May need better logic in future
+    params.id ?: params.dashboardId
   }
 
-  public boolean isOwner() {
-    def dashboardOwner = Dashboard.executeQuery("""
-      SELECT owner.id from Dashboard as d WHERE d.id = :dId
-    """,[dId: params.id])[0]
-    // Bear in mind dash.owner.id is the id of a ExternalUser, which SHOULD always be the FOLIO ID
-    return matchesCurrentUser(dashboardOwner)
+  // TODO at some point in the future, we should look into replacing the explicit user checks
+  // with granting internal spring permissions based on the access objects,
+  // then querying for those permissions... Ask Steve. Should allow int-testing based on mocked perms
+  public boolean hasAccess(String desiredAccessLevel) {
+    String patronId = getPatron().id
+    String dashboardId = getDashboardId()
+
+    dashboardService.hasAccess(desiredAccessLevel, dashboardId, patronId)
+  }
+
+  public boolean hasAdminPerm() {
+    return hasAuthority('okapi.servint.dashboards.admin')
   }
 
   public boolean matchesCurrentUser(String id) {
     return id == getPatron().id
   }
 
-  public boolean canRead() {
-    return isOwner() || hasAuthority('okapi.servint.dashboards.admin')
+  public boolean canView() {
+    return hasAccess('view') || hasAdminPerm()
   }
 
-  public boolean canDelete() {
-    return isOwner() || hasAuthority('okapi.servint.dashboards.admin')
+  public boolean canManage() {
+    return hasAccess('manage') || hasAdminPerm()
   }
 
   public boolean canEdit() {
-    return isOwner() || hasAuthority('okapi.servint.dashboards.admin')
+    return hasAccess('edit') || hasAdminPerm()
   }
 
-  public boolean canPost(String ownerId) {
-    matchesCurrentUser(ownerId) || hasAuthority('okapi.servint.dashboards.admin')
+
+  public def getUserSpecificDashboards() {
+    String patronId = getPatron().id
+    log.debug("DashboardController::getUserSpecificDashboards called for patron (${patronId}) ")
+    ExternalUser user = externalUserService.resolveUser(patronId);
+
+    // For now create default dashboard if user has no dashboards when trying to view all their dashboards.
+    // TODO probably want to remove this, and have splash screen on frontend when no dashboards exist
+    def count = dashboardService.countUserDashboards(user)
+    if (count == 0) {
+      dashboardService.createDefaultDashboard(user)
+    }
+
+    respond doTheLookup(DashboardAccess) {
+      eq 'user.id', user.id
+    }
+  }
+
+  public def getDashboardUsers() {
+    if (!canView()) {
+      response.sendError(403)
+    } else {
+      respond doTheLookup(DashboardAccess) {
+        eq 'dashboard.id', getDashboardId()
+      }
+    }
+  }
+
+  // Endpoint to edit the set of user access objects for a specific dashboard
+  public def editDashboardUsers() {
+    if (!canManage()) {
+      response.sendError(403)
+    } else {
+      def data = getObjectToBind();
+      String patronId = getPatron().id
+      dashboardService.updateAccessToDashboard(getDashboardId(), data, patronId)
+      getDashboardUsers()
+    }
+  }
+
+  // Endpoint to edit dashboard access objects for a given user (For order weight, default etc)
+  public def editUserDashboards() {
+    def data = getObjectToBind();
+    String patronId = getPatron().id
+
+    for (def access : data) {
+      if (!access.id) {
+        response.sendError(400, "Can not edit access object with unspecified id. (${access})")
+        return;
+      }
+
+      if (!access.user?.id) {
+        response.sendError(400, "Can not edit access object with unspecified user id. (${access})")
+        return;
+      }
+
+      if (access.user.id != patronId) {
+        response.sendError(403, "User (${patronId}) can not edit access object for another user. (${access})")
+        return;
+      }
+    }
+
+    dashboardService.updateUserDashboards(data, patronId)
+    getUserSpecificDashboards()
+  }
+
+  public def widgets() {
+    if (!canView()) {
+      response.sendError(403)
+    } else {
+      respond doTheLookup(WidgetInstance) {
+        eq 'owner.id', getDashboardId()
+      }
+    }
+  }
+
+  def index(Integer max) {
+    if (!hasAdminPerm()) {
+      response.sendError(403)
+    } else {
+      super.index(max)
+    }
   }
 
   def show() {
-    if (!canRead()) {
+    if (!canView()) {
       response.sendError(403)
-    } 
-    super.show()
+    } else {
+      super.show()
+    }
   }
 
   def delete() {
-    if (!canDelete()) {
+    if (!canManage()) {
       response.sendError(403)
-    } 
-    super.delete()
+    } else {
+      // Ensure you delete all dashboard access objects before the dash itself
+      dashboardService.deleteAccessObjects(getDashboardId())
+      super.delete()
+    }
   }
 
   def update() {
     if (!canEdit()) {
       response.sendError(403)
+    } else {
+      super.update()
     }
-    super.update()
   }
 
   def save() {
     def data = getObjectToBind()
-    // Check owner details match current patron, or that user has authority
-    if (!canPost(data.owner?.id)) {
-      response.sendError(403, "User does not have permission to POST a dashboard with owner (${data.owner?.id})")
+    String patronId = getPatron().id
+    ExternalUser user = externalUserService.resolveUser(patronId);
+
+    Integer dashboardCount = dashboardService.countUserDashboards(user);
+
+    if (dashboardCount == 0) {
+      respond dashboardService.createDashboard(data, user, true);
     } else {
-      def userExists = ExternalUser.read(data.owner?.id)
-      if (!userExists) {
-        response.sendError(404, "Cannot create user proxy through the dashboard. User must log in and access the endpoint '/servint/dashboards/my-dashboard' before dashboards can be assigned to them.")
-      }
-      // ONLY save if perms valid AND user exists
-      super.save()
+      respond dashboardService.createDashboard(data, user);
     }
-  }
+  } 
 }

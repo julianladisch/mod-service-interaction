@@ -59,8 +59,32 @@
           "permissionsDesired":["servint.dashboards.admin"]
         },
         {
+          "methods": [ "PUT" ],
+          "pathPattern": "/servint/dashboard/my-dashboards",
+          "permissionsRequired": ["servint.dashboards.user.put"],
+          "permissionsDesired":["servint.dashboards.admin"]
+        },
+        {
           "methods": [ "GET" ],
           "pathPattern": "/servint/dashboard/{id}",
+          "permissionsRequired": ["servint.dashboards.item.get"],
+          "permissionsDesired":["servint.dashboards.admin"]
+        },
+        {
+          "methods": [ "GET" ],
+          "pathPattern": "/servint/dashboard/{id}/users",
+          "permissionsRequired": ["servint.dashboards.item.get"],
+          "permissionsDesired":["servint.dashboards.admin"]
+        },
+        {
+          "methods": [ "POST" ],
+          "pathPattern": "/servint/dashboard/{id}/users",
+          "permissionsRequired": ["servint.dashboards.item.put"],
+          "permissionsDesired":["servint.dashboards.admin"]
+        },
+        {
+          "methods": [ "GET" ],
+          "pathPattern": "/servint/dashboard/{id}/widgets",
           "permissionsRequired": ["servint.dashboards.item.get"],
           "permissionsDesired":["servint.dashboards.admin"]
         },
@@ -101,12 +125,6 @@
           "methods": [ "GET" ],
           "pathPattern": "/servint/widgets/instances",
           "permissionsRequired": ["servint.widgetInstances.collection.get"],
-          "permissionsDesired":["servint.dashboards.admin"]
-        },
-        {
-          "methods": [ "GET" ],
-          "pathPattern": "/servint/widgets/instances/my-widgets",
-          "permissionsRequired": ["servint.widgetInstances.user.get"],
           "permissionsDesired":["servint.dashboards.admin"]
         },
         {
@@ -294,6 +312,11 @@
       "description": "Get a collection of dashboards for a user"
     },
     {
+      "permissionName": "servint.dashboards.user.put",
+      "displayName": "Dashboard user collection put",
+      "description": "Edit a collection of dashboards for a user"
+    },
+    {
       "permissionName": "servint.dashboards.item.get",
       "displayName": "Dashboard user item get",
       "description": "Get a dashboard item for a user"
@@ -401,6 +424,7 @@
       "description": "Allow user to create, edit and add widgets to dashboards",
       "subPermissions": [
         "servint.dashboards.view",
+        "servint.dashboards.user.put",
         "servint.dashboards.item.post",
         "servint.dashboards.item.put",
         "servint.widget.create",

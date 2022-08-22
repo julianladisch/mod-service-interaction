@@ -1,0 +1,15 @@
+import  org.olf.DashboardAccess
+
+import groovy.transform.*
+
+@Field
+DashboardAccess dashboardAccess
+
+def expand = ['access']
+def doNotExpandDashboardActions = ['getDashboardUsers', 'editDashboardUsers']
+
+if (controllerName == 'dashboard' && !doNotExpandDashboardActions.contains(actionName)) {
+  expand << 'dashboard'
+}
+
+json g.render (dashboardAccess, [expand: expand])
