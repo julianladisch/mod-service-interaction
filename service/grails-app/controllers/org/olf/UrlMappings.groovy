@@ -27,6 +27,8 @@ class UrlMappings {
       }
 
       "/widgets" (action: 'widgets', method: 'GET')
+
+      "/my-access" (action: 'myAccess', method: 'GET')
     }
 
     "/servint/widgets/definitions" (resources: 'widgetDefinition') {

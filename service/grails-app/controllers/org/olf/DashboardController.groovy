@@ -136,6 +136,15 @@ class DashboardController extends OkapiTenantAwareController<DashboardController
     }
   }
 
+  public def myAccess() {
+    if (!canView()) {
+      response.sendError(403)
+    } else {
+      def accessLevel = dashboardService.accessLevel(getDashboardId(), getPatron().id)
+      respond ([access: accessLevel])
+    }
+  }
+
   def index(Integer max) {
     if (!hasAdminPerm()) {
       response.sendError(403)
