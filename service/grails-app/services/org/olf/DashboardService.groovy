@@ -107,10 +107,11 @@ class DashboardService {
     
     userAccess.each { access ->
       DashboardAccess.withNewTransaction {
-        if (access.user.id == currentUserId) {
-          log.warn("DashboardAccess can not currently be changed for the currently logged in user")
-        } else if (!access.id) {
+        if (!access.id) {
           // If we are not editing an existing access object then we can just create a new one
+          if (access.user.id == currentUserId) {
+            log.warn("DashboardAccess can not currently be changed for the currently logged in user")
+          }
 
           // First check one doesn't already exist for this user (easiest is by checking access level
           if (hasAccess('view', dashboardId, access.user.id)) {
@@ -135,7 +136,9 @@ class DashboardService {
 
           // Fetch the existing DashboardAccess object for comparison
           DashboardAccess existingAccess = DashboardAccess.get(access.id);
-          if (access.dashboard.id != dashboardId) {
+          if (existingAccess.user.id == currentUserId) {
+            log.warn("DashboardAccess can not currently be changed for the currently logged in user")
+          } else if (existingAccess.dashboard.id != dashboardId) {
             log.warn("Dashboard access object (${access.id}) dashboard id mismatch. Expected ${dashboardId}, but got ${access.dashboard.id}. Ignoring any requested changes")
           } else if (access._delete) {
             // We need to remove this access
