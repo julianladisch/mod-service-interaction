@@ -129,4 +129,10 @@ databaseChangeLog = {
       columnName: "dshb_owner_fk"
     )
   }
+
+  changeSet(author: "efreestone (manual)", id: "2022-09-07-1553-001") {
+    addColumn (tableName: "dashboard" ) {
+      column(name: "dshb_description", type: "TEXT")
+    }
+  }
 }
