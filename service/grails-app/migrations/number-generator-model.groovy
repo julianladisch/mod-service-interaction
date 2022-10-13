@@ -64,4 +64,10 @@ databaseChangeLog = {
        column(name: 'ngs_enabled', type: "BOOLEAN")
     }
   }
+
+  changeSet(author: "efreestone (manual)", id: "2022-10-13-1355-001") {
+    addColumn(tableName: "number_generator_sequence") {
+      column(name: 'ngs_name', type: "VARCHAR(100)")
+    }
+  }
 }

@@ -27,36 +27,36 @@ public class HousekeepingService {
     try {
       Tenants.withId(tenant_schema_id) {
 
-        // Load default sequences availabe for all installations
+        // Load default sequences available for all installations
         AppSetting.withTransaction {
           [
             [
               code:'openAccess',
               name:'Open Access',
               sequences: [
-                [ code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'oa-${generated_number}-${checksum}' ]
+                [ name: 'Request sequence', code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'oa-${generated_number}-${checksum}' ]
               ]
             ],
             [
               code:'patronRequest',
               name:'Patron Request (ILL)',
               sequences: [
-                [ code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'ill-${generated_number}-${checksum}' ]
+                [ name: 'Request sequence', code:'requestSequence',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'ill-${generated_number}-${checksum}' ]
               ]
             ],
             [
               code:'Patron',
               name:'Patron',
               sequences: [
-                [ code:'patron',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'P${generated_number}-${checksum}' ],
-                [ code:'staff',      'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'S${generated_number}-${checksum}' ]
+                [ name: 'Patron', code:'patron',     'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'P${generated_number}-${checksum}' ],
+                [ name: 'Staff', code:'staff',      'format':'000000000',         'checkDigitAlgo':'EAN13',    'outputTemplate':'S${generated_number}-${checksum}' ]
               ]
             ],
             [
               code:'Vendor',
               name:'Vendor',
               sequences: [
-                [ code:'vendor',     'format':'000',         'checkDigitAlgo':'None',    'outputTemplate':'K${generated_number}' ],
+                [ name: 'Vendor', code:'vendor',     'format':'000',         'checkDigitAlgo':'None',    'outputTemplate':'K${generated_number}' ],
               ]
             ],
           ].each { ng_defn ->
@@ -68,6 +68,7 @@ public class HousekeepingService {
                         owner: ng,
                         code: seq_defn.code,
                         format: seq_defn.format,
+                        name: seq_defn.name,
                         nextValue: 1,
                         checkDigitAlgo: seq_defn.checkDigitAlgo ? RefdataValue.lookupOrCreate('NumberGeneratorSequence.checkDigitAlgo',seq_defn.checkDigitAlgo) : null,
                         outputTemplate:seq_defn.outputTemplate

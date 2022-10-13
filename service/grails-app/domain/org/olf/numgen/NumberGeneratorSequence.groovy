@@ -10,6 +10,7 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
   String id
   NumberGenerator owner
   String code
+  String name
   String prefix
   String postfix
   String format
@@ -38,6 +39,7 @@ class NumberGeneratorSequence implements MultiTenant<NumberGeneratorSequence> {
            version column: 'ngs_version'
              owner column: 'ngs_owner'
               code column: 'ngs_code'
+              name column: 'ngs_name'
             prefix column: 'ngs_prefix'
            postfix column: 'ngs_postfix'
          nextValue column: 'ngs_next_value'
