@@ -33,7 +33,7 @@ dataSource:
       jdbcInterceptors: ConnectionState
       defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 server:
-  port: 8079
+  port: 8078
 okapi: 
   service:
     host: localhost
