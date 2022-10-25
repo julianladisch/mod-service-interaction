@@ -1,5 +1,13 @@
-## 2.0.0 In progress
+## 2.0.0 2022-10-25
   * ERM-2312 Managed Dashboards: backend model
+    * Changed domain model to allow for multiple dashboards per user and multiple users per dashboard
+    * Changed endpoints to reflect this (Breaking change)
+  * Number generator
+    * Refactors
+    * Added configuration for user sequences
+    * NextValue defaults to 1
+    * Added `enabled` and `description` fields
+    * Added `name` field
 
 ## 1.1.0 2022-06-29
   * ERM-2134 Service Interaction - mod-service-interaction lacks memory limit in launch descriptor
