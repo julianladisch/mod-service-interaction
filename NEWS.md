@@ -1,3 +1,5 @@
+## 2.1.0 In progress
+
 ## 2.0.0 2022-10-25
   * ERM-2312 Managed Dashboards: backend model
     * Changed domain model to allow for multiple dashboards per user and multiple users per dashboard
