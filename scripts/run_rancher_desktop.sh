@@ -1,5 +1,5 @@
 #!/bin/bash
-MODULE_PORT=8079
+MODULE_PORT=8078
 MODULE_NAME=mod-service-interaction
 
 source ~/.okapirc

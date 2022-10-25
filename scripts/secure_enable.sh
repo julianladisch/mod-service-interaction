@@ -1,7 +1,7 @@
 ## This script logs into OKAPI and then registers and enables the module
 BASEDIR=$(dirname "$0")
 
-MODULE_PORT=8079
+MODULE_PORT=8078
 
 # This script generates the module descriptor for mod-rs and posts it to a secured OKAPI control interface
 # the script is controlled by a ~/.okapirc file where you need to specify the supertenant username (ST_UN)
