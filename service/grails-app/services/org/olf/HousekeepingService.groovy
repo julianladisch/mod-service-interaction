@@ -70,7 +70,7 @@ public class HousekeepingService {
                         format: seq_defn.format,
                         name: seq_defn.name,
                         nextValue: 1,
-                        checkDigitAlgo: seq_defn.checkDigitAlgo ? RefdataValue.lookupOrCreate('NumberGeneratorSequence.checkDigitAlgo',seq_defn.checkDigitAlgo) : null,
+                        checkDigitAlgo: seq_defn.checkDigitAlgo ? RefdataValue.lookupOrCreate('NumberGeneratorSequence.CheckDigitAlgo',seq_defn.checkDigitAlgo) : null,
                         outputTemplate:seq_defn.outputTemplate
                       ).save(flush:true, failOnError:true)
               }
